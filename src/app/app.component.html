@@ -1,1 +1,8 @@
-<router-outlet />
+<nav class="flex flex-col gap-5 pt-5">
+  <a routerLink="/">Home</a>
+</nav>
+<main class="col-span-3 flex h-screen justify-center">
+  <div class="h-full w-full overflow-y-auto border-x border-slate-400">
+    <router-outlet />
+  </div>
+</main>
