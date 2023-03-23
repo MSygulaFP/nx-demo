@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@nx-demo/modules/albums": ["modules/albums/src/index.ts"],
+      "@nx-demo/modules/posts": ["modules/posts/src/index.ts"],
+      "@nx-demo/modules/todos": ["modules/todos/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
