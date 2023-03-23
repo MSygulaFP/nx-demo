@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import * as fromUsers from './+state/users/users.reducer';
 import { UsersEffects } from './+state/users/users.effects';
@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot(
       {
         [fromUsers.USERS_FEATURE_KEY]: fromUsers.usersReducer,
+        router: routerReducer,
       },
       {
         metaReducers: [],
@@ -23,7 +24,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       }
     ),
     EffectsModule.forRoot([UsersEffects]),
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({
+      // serializer: RouterSerializer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,

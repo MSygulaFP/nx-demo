@@ -12,3 +12,8 @@ export const loadPostsFailure = createAction(
   '[Posts/API] Load Posts Failure',
   props<{ error: any }>()
 );
+
+export const selectPost = createAction(
+  '[Posts Page] SelectPost',
+  props<{ postId: number }>()
+);

@@ -1,5 +1,5 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as PostsActions from './posts.actions';
 import { PostsEntity } from './posts.models';
@@ -34,7 +34,14 @@ const reducer = createReducer(
   on(PostsActions.loadPostsSuccess, (state, { posts }) =>
     postsAdapter.setAll(posts, { ...state, loaded: true })
   ),
-  on(PostsActions.loadPostsFailure, (state, { error }) => ({ ...state, error }))
+  on(PostsActions.loadPostsFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
+  on(PostsActions.selectPost, (state, { postId }) => ({
+    ...state,
+    selectedId: postId,
+  }))
 );
 
 export function postsReducer(state: PostsState | undefined, action: Action) {

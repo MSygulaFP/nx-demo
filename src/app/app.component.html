@@ -1,4 +1,4 @@
-<nav class="flex flex-col gap-5 pt-5">
+<nav class="flex flex-col items-end gap-5 pt-5 pr-5">
   <a routerLink="/">Home</a>
   <a routerLink="/posts">Posts</a>
   <a routerLink="/albums">Albums</a>
@@ -6,6 +6,12 @@
 </nav>
 <main class="col-span-3 flex h-screen justify-center">
   <div class="h-full w-full overflow-y-auto border-x border-slate-400">
+    <header
+      class="p-5 border-b border-slate-400"
+      *ngIf="(isOnRoot$ | async) === false"
+    >
+      <button (click)="goBack()">Back</button>
+    </header>
     <router-outlet />
   </div>
 </main>

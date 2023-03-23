@@ -1,8 +1,7 @@
-import { Injectable, inject } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { inject, Injectable } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 
 import * as UsersActions from './users.actions';
-import * as UsersFeature from './users.reducer';
 import * as UsersSelectors from './users.selectors';
 
 @Injectable()
@@ -23,5 +22,9 @@ export class UsersFacade {
    */
   init() {
     this.store.dispatch(UsersActions.initUsers());
+  }
+
+  selectUser(userId: number) {
+    this.store.dispatch(UsersActions.selectUser({ userId }));
   }
 }

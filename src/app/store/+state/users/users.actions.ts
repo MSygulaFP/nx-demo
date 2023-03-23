@@ -12,3 +12,8 @@ export const loadUsersFailure = createAction(
   '[Users/API] Load Users Failure',
   props<{ error: any }>()
 );
+
+export const selectUser = createAction(
+  '[Users Page] Select User',
+  props<{ userId: number }>()
+);

@@ -1,0 +1,15 @@
+<article
+  class="prose max-w-none dark:prose-invert p-4"
+  *ngIf="{
+    post: post$ | async,
+    user: user$ | async
+  } as vm"
+>
+  <h2>
+    {{ vm.post?.title }}
+  </h2>
+  <main>
+    {{ vm.post?.body }}
+  </main>
+  <footer class="text-right mt-3">Posted by {{ vm.user?.username }}</footer>
+</article>
