@@ -1,8 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { AlbumsFacade } from '../+state/albums.facade';
 
 @Component({
   selector: 'nx-demo-albums',
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.scss'],
 })
-export class AlbumsComponent {}
+export class AlbumsComponent implements OnInit {
+  private albumsFacade = inject(AlbumsFacade);
+
+  ngOnInit() {
+    this.albumsFacade.init();
+  }
+}
