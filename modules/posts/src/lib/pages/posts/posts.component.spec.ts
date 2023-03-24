@@ -1,22 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { PostsComponent } from './posts.component';
+import { PostsModule } from '@nx-demo/modules/posts';
 
-describe('PostsComponent', () => {
-  let component: PostsComponent;
-  let fixture: ComponentFixture<PostsComponent>;
+describe(PostsComponent.name, () => {
+  beforeEach(() => MockBuilder([PostsComponent], [PostsModule]));
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [PostsComponent],
-    }).compileComponents();
+  it('should render', () => {
+    const component = MockRender(PostsComponent).point.componentInstance;
 
-    fixture = TestBed.createComponent(PostsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

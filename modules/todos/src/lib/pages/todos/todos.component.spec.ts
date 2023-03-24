@@ -1,22 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { TodosComponent } from './todos.component';
+import { TodosModule } from '@nx-demo/modules/todos';
 
-describe('TodosComponent', () => {
-  let component: TodosComponent;
-  let fixture: ComponentFixture<TodosComponent>;
+describe(TodosComponent.name, () => {
+  beforeEach(() => MockBuilder([TodosComponent], [TodosModule]));
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TodosComponent],
-    }).compileComponents();
+  it('should render', () => {
+    const component = MockRender(TodosComponent).point.componentInstance;
 
-    fixture = TestBed.createComponent(TodosComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

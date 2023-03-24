@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as UsersActions from './users.actions';
 
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { UsersService } from './users.service';
 
 @Injectable()
@@ -16,6 +16,7 @@ export class UsersEffects {
       ofType(UsersActions.initUsers),
       switchMap(() =>
         this.usersService.getUsers().pipe(
+          tap((e) => console.log(e)),
           map((users) => UsersActions.loadUsersSuccess({ users })),
           catchError((error) => {
             console.error('Error', error);

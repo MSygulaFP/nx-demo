@@ -1,22 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockRender } from 'ng-mocks';
 import { AlbumsComponent } from './albums.component';
+import { AlbumsModule } from '@nx-demo/modules/albums';
 
-describe('AlbumsComponent', () => {
-  let component: AlbumsComponent;
-  let fixture: ComponentFixture<AlbumsComponent>;
+describe(AlbumsComponent.name, () => {
+  beforeEach(() => MockBuilder([AlbumsComponent], [AlbumsModule]));
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AlbumsComponent],
-    }).compileComponents();
+  it('should render', () => {
+    const component = MockRender(AlbumsComponent).point.componentInstance;
 
-    fixture = TestBed.createComponent(AlbumsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
