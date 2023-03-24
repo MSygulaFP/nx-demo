@@ -1,5 +1,5 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as AlbumsActions from './albums.actions';
 import { AlbumsEntity } from './albums.models';
@@ -7,9 +7,9 @@ import { AlbumsEntity } from './albums.models';
 export const ALBUMS_FEATURE_KEY = 'albums';
 
 export interface AlbumsState extends EntityState<AlbumsEntity> {
-  selectedId?: string | number; // which Albums record has been selected
-  loaded: boolean; // has the Albums list been loaded
-  error?: string | null; // last known error (if any)
+  selectedId?: number;
+  loaded: boolean;
+  error?: string | null;
 }
 
 export interface AlbumsPartialState {
@@ -20,7 +20,6 @@ export const albumsAdapter: EntityAdapter<AlbumsEntity> =
   createEntityAdapter<AlbumsEntity>();
 
 export const initialAlbumsState: AlbumsState = albumsAdapter.getInitialState({
-  // set initial required properties
   loaded: false,
 });
 

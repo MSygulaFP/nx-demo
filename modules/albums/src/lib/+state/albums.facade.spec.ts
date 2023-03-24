@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { readFirst } from '@nrwl/angular/testing';
 
 import * as AlbumsActions from './albums.actions';
@@ -10,11 +10,9 @@ import { AlbumsFacade } from './albums.facade';
 import { AlbumsEntity } from './albums.models';
 import {
   ALBUMS_FEATURE_KEY,
-  AlbumsState,
-  initialAlbumsState,
   albumsReducer,
+  AlbumsState,
 } from './albums.reducer';
-import * as AlbumsSelectors from './albums.selectors';
 
 interface TestSchema {
   albums: AlbumsState;
@@ -23,10 +21,11 @@ interface TestSchema {
 describe('AlbumsFacade', () => {
   let facade: AlbumsFacade;
   let store: Store<TestSchema>;
-  const createAlbumsEntity = (id: string, name = ''): AlbumsEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createAlbumsEntity = (id: number, title = ''): AlbumsEntity =>
+    ({
+      id,
+      title: title || `title-${id}`,
+    } as AlbumsEntity);
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -53,9 +52,6 @@ describe('AlbumsFacade', () => {
       facade = TestBed.inject(AlbumsFacade);
     });
 
-    /**
-     * The initially generated facade::loadAll() returns empty array
-     */
     it('loadAll() should return empty list with loaded == true', async () => {
       let list = await readFirst(facade.allAlbums$);
       let isLoaded = await readFirst(facade.loaded$);
@@ -72,9 +68,6 @@ describe('AlbumsFacade', () => {
       expect(isLoaded).toBe(true);
     });
 
-    /**
-     * Use `loadAlbumsSuccess` to manually update list
-     */
     it('allAlbums$ should return the loaded list; and loaded flag == true', async () => {
       let list = await readFirst(facade.allAlbums$);
       let isLoaded = await readFirst(facade.loaded$);
@@ -84,7 +77,7 @@ describe('AlbumsFacade', () => {
 
       store.dispatch(
         AlbumsActions.loadAlbumsSuccess({
-          albums: [createAlbumsEntity('AAA'), createAlbumsEntity('BBB')],
+          albums: [createAlbumsEntity(1), createAlbumsEntity(2)],
         })
       );
 

@@ -1,5 +1,5 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as TodosActions from './todos.actions';
 import { TodosEntity } from './todos.models';
@@ -7,9 +7,9 @@ import { TodosEntity } from './todos.models';
 export const TODOS_FEATURE_KEY = 'todos';
 
 export interface TodosState extends EntityState<TodosEntity> {
-  selectedId?: string | number; // which Todos record has been selected
-  loaded: boolean; // has the Todos list been loaded
-  error?: string | null; // last known error (if any)
+  selectedId?: number;
+  loaded: boolean;
+  error?: string | null;
 }
 
 export interface TodosPartialState {
@@ -20,7 +20,6 @@ export const todosAdapter: EntityAdapter<TodosEntity> =
   createEntityAdapter<TodosEntity>();
 
 export const initialTodosState: TodosState = todosAdapter.getInitialState({
-  // set initial required properties
   loaded: false,
 });
 

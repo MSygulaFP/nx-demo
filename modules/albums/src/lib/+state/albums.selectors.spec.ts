@@ -9,10 +9,10 @@ import * as AlbumsSelectors from './albums.selectors';
 describe('Albums Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getAlbumsId = (it: AlbumsEntity) => it.id;
-  const createAlbumsEntity = (id: string, name = '') =>
+  const createAlbumsEntity = (id: number, title = '') =>
     ({
       id,
-      name: name || `name-${id}`,
+      title: title || `title-${id}`,
     } as AlbumsEntity);
 
   let state: AlbumsPartialState;
@@ -20,14 +20,10 @@ describe('Albums Selectors', () => {
   beforeEach(() => {
     state = {
       albums: albumsAdapter.setAll(
-        [
-          createAlbumsEntity('PRODUCT-AAA'),
-          createAlbumsEntity('PRODUCT-BBB'),
-          createAlbumsEntity('PRODUCT-CCC'),
-        ],
+        [createAlbumsEntity(1), createAlbumsEntity(2), createAlbumsEntity(3)],
         {
           ...initialAlbumsState,
-          selectedId: 'PRODUCT-BBB',
+          selectedId: 2,
           error: ERROR_MSG,
           loaded: true,
         }

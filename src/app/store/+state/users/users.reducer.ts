@@ -7,9 +7,9 @@ import { UsersEntity } from './users.models';
 export const USERS_FEATURE_KEY = 'users';
 
 export interface UsersState extends EntityState<UsersEntity> {
-  selectedId?: string | number; // which Users record has been selected
-  loaded: boolean; // has the Users list been loaded
-  error?: string | null; // last known error (if any)
+  selectedId?: number;
+  loaded: boolean;
+  error?: string | null;
 }
 
 export interface UsersPartialState {
@@ -20,7 +20,6 @@ export const usersAdapter: EntityAdapter<UsersEntity> =
   createEntityAdapter<UsersEntity>();
 
 export const initialUsersState: UsersState = usersAdapter.getInitialState({
-  // set initial required properties
   loaded: false,
 });
 

@@ -1,7 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { POSTS_FEATURE_KEY, PostsState, postsAdapter } from './posts.reducer';
+import { POSTS_FEATURE_KEY, postsAdapter, PostsState } from './posts.reducer';
 
-// Lookup the 'Posts' feature state managed by NgRx
 export const selectPostsState =
   createFeatureSelector<PostsState>(POSTS_FEATURE_KEY);
 
@@ -27,13 +26,13 @@ export const selectPostsEntities = createSelector(
   (state: PostsState) => selectEntities(state)
 );
 
-export const selectSelectedId = createSelector(
+export const selectSelectedPostId = createSelector(
   selectPostsState,
   (state: PostsState) => state.selectedId
 );
 
 export const selectEntity = createSelector(
   selectPostsEntities,
-  selectSelectedId,
+  selectSelectedPostId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );

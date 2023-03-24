@@ -1,7 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { TODOS_FEATURE_KEY, TodosState, todosAdapter } from './todos.reducer';
+import { TODOS_FEATURE_KEY, todosAdapter, TodosState } from './todos.reducer';
 
-// Lookup the 'Todos' feature state managed by NgRx
 export const selectTodosState =
   createFeatureSelector<TodosState>(TODOS_FEATURE_KEY);
 
@@ -20,6 +19,14 @@ export const selectTodosError = createSelector(
 export const selectAllTodos = createSelector(
   selectTodosState,
   (state: TodosState) => selectAll(state)
+);
+
+export const selectUncompletedTodos = createSelector(selectAllTodos, (todos) =>
+  todos.filter((todo) => !todo.completed)
+);
+
+export const selectCompletedTodos = createSelector(selectAllTodos, (todos) =>
+  todos.filter((todo) => todo.completed)
 );
 
 export const selectTodosEntities = createSelector(

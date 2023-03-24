@@ -22,8 +22,4 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.usersFacade.init();
   }
-
-  goBack() {
-    this.location.back();
-  }
 }

@@ -1,18 +1,18 @@
 import { TodosEntity } from './todos.models';
 import {
+  initialTodosState,
   todosAdapter,
   TodosPartialState,
-  initialTodosState,
 } from './todos.reducer';
 import * as TodosSelectors from './todos.selectors';
 
 describe('Todos Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getTodosId = (it: TodosEntity) => it.id;
-  const createTodosEntity = (id: string, name = '') =>
+  const createTodosEntity = (id: number, title = '') =>
     ({
       id,
-      name: name || `name-${id}`,
+      title: title || `title-${id}`,
     } as TodosEntity);
 
   let state: TodosPartialState;
@@ -20,14 +20,10 @@ describe('Todos Selectors', () => {
   beforeEach(() => {
     state = {
       todos: todosAdapter.setAll(
-        [
-          createTodosEntity('PRODUCT-AAA'),
-          createTodosEntity('PRODUCT-BBB'),
-          createTodosEntity('PRODUCT-CCC'),
-        ],
+        [createTodosEntity(1), createTodosEntity(2), createTodosEntity(3)],
         {
           ...initialTodosState,
-          selectedId: 'PRODUCT-BBB',
+          selectedId: 2,
           error: ERROR_MSG,
           loaded: true,
         }
@@ -48,7 +44,7 @@ describe('Todos Selectors', () => {
       const result = TodosSelectors.selectEntity(state) as TodosEntity;
       const selId = getTodosId(result);
 
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe(2);
     });
 
     it('selectTodosLoaded() should return the current "loaded" status', () => {

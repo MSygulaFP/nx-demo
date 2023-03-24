@@ -1,20 +1,14 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { readFirst } from '@nrwl/angular/testing';
 
 import * as TodosActions from './todos.actions';
 import { TodosEffects } from './todos.effects';
 import { TodosFacade } from './todos.facade';
 import { TodosEntity } from './todos.models';
-import {
-  TODOS_FEATURE_KEY,
-  TodosState,
-  initialTodosState,
-  todosReducer,
-} from './todos.reducer';
-import * as TodosSelectors from './todos.selectors';
+import { TODOS_FEATURE_KEY, todosReducer, TodosState } from './todos.reducer';
 
 interface TestSchema {
   todos: TodosState;
@@ -23,10 +17,11 @@ interface TestSchema {
 describe('TodosFacade', () => {
   let facade: TodosFacade;
   let store: Store<TestSchema>;
-  const createTodosEntity = (id: string, name = ''): TodosEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createTodosEntity = (id: number, title = ''): TodosEntity =>
+    ({
+      id,
+      title: title || `title-${id}`,
+    } as TodosEntity);
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -84,7 +79,7 @@ describe('TodosFacade', () => {
 
       store.dispatch(
         TodosActions.loadTodosSuccess({
-          todos: [createTodosEntity('AAA'), createTodosEntity('BBB')],
+          todos: [createTodosEntity(1), createTodosEntity(2)],
         })
       );
 

@@ -1,0 +1,8 @@
+<h3 class="text-center font-medium">
+  {{ title }}
+</h3>
+<div class="grid gap-4 mt-4">
+  <div *ngFor="let todo of todos" class="border border-slate-700 p-2 rounded">
+    {{ todo.title }}
+  </div>
+</div>

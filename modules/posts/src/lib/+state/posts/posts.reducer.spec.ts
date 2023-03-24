@@ -2,20 +2,18 @@ import { Action } from '@ngrx/store';
 
 import * as PostsActions from './posts.actions';
 import { PostsEntity } from './posts.models';
-import { PostsState, initialPostsState, postsReducer } from './posts.reducer';
+import { initialPostsState, postsReducer, PostsState } from './posts.reducer';
 
 describe('Posts Reducer', () => {
-  const createPostsEntity = (id: string, name = ''): PostsEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createPostsEntity = (id: number, title = ''): PostsEntity =>
+    ({
+      id,
+      title: title || `title-${id}`,
+    } as PostsEntity);
 
   describe('valid Posts actions', () => {
     it('loadPostsSuccess should return the list of known Posts', () => {
-      const posts = [
-        createPostsEntity('PRODUCT-AAA'),
-        createPostsEntity('PRODUCT-zzz'),
-      ];
+      const posts = [createPostsEntity(1), createPostsEntity(2)];
       const action = PostsActions.loadPostsSuccess({ posts });
 
       const result: PostsState = postsReducer(initialPostsState, action);

@@ -1,18 +1,18 @@
 import { PostsEntity } from './posts.models';
 import {
+  initialPostsState,
   postsAdapter,
   PostsPartialState,
-  initialPostsState,
 } from './posts.reducer';
 import * as PostsSelectors from './posts.selectors';
 
 describe('Posts Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getPostsId = (it: PostsEntity) => it.id;
-  const createPostsEntity = (id: string, name = '') =>
+  const createPostsEntity = (id: number, title = '') =>
     ({
       id,
-      name: name || `name-${id}`,
+      title: title || `title-${id}`,
     } as PostsEntity);
 
   let state: PostsPartialState;
@@ -20,14 +20,10 @@ describe('Posts Selectors', () => {
   beforeEach(() => {
     state = {
       posts: postsAdapter.setAll(
-        [
-          createPostsEntity('PRODUCT-AAA'),
-          createPostsEntity('PRODUCT-BBB'),
-          createPostsEntity('PRODUCT-CCC'),
-        ],
+        [createPostsEntity(1), createPostsEntity(2), createPostsEntity(3)],
         {
           ...initialPostsState,
-          selectedId: 'PRODUCT-BBB',
+          selectedId: 2,
           error: ERROR_MSG,
           loaded: true,
         }

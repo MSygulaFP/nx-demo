@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@app/*": ["src/app/*"],
       "@nx-demo/modules/albums": ["modules/albums/src/index.ts"],
+      "@nx-demo/modules/comments": ["modules/comments/src/index.ts"],
       "@nx-demo/modules/posts": ["modules/posts/src/index.ts"],
       "@nx-demo/modules/todos": ["modules/todos/src/index.ts"]
     }

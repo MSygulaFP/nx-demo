@@ -10,7 +10,7 @@ export const loadUsersSuccess = createAction(
 
 export const loadUsersFailure = createAction(
   '[Users/API] Load Users Failure',
-  props<{ error: any }>()
+  props<{ error: string | null }>()
 );
 
 export const selectUser = createAction(

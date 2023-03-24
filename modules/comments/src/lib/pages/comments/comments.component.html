@@ -1,0 +1,14 @@
+<h3 class="m-4 font-medium text-lg mt-8">Comments</h3>
+<div
+  class="border-t gap-4 border-slate-400 p-4 grid grid-cols-2"
+  *ngFor="let comment of comments$ | async"
+>
+  <h4 class="text-lg font-medium">{{ comment.name }}</h4>
+  <span class="text-right text-slate-500 text-sm font-light">
+    <em>by</em>
+    {{ comment.email }}
+  </span>
+  <p class="col-span-2 text-slate-200">
+    {{ comment.body }}
+  </p>
+</div>

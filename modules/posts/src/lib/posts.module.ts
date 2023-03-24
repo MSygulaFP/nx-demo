@@ -8,7 +8,7 @@ import * as fromPosts from './+state/posts/posts.reducer';
 import { PostsEffects } from './+state/posts/posts.effects';
 import { PostsFacade } from './+state/posts/posts.facade';
 import { PostListItemComponent } from './components/post-list-item/post-list-item.component';
-import { DetailsComponent } from './pages/details/details.component';
+import { SinglePostDetailsComponent } from './pages/single-post-details/single-post-details.component';
 
 const routes: Routes = [
   {
@@ -17,12 +17,23 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: DetailsComponent,
+    component: SinglePostDetailsComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('@nx-demo/modules/comments').then((c) => c.commentsRoutes),
+      },
+    ],
   },
 ];
 
 @NgModule({
-  declarations: [PostsComponent, PostListItemComponent, DetailsComponent],
+  declarations: [
+    PostsComponent,
+    PostListItemComponent,
+    SinglePostDetailsComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

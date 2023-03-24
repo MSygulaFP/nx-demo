@@ -1,20 +1,14 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { readFirst } from '@nrwl/angular/testing';
 
 import * as PostsActions from './posts.actions';
 import { PostsEffects } from './posts.effects';
 import { PostsFacade } from './posts.facade';
 import { PostsEntity } from './posts.models';
-import {
-  POSTS_FEATURE_KEY,
-  PostsState,
-  initialPostsState,
-  postsReducer,
-} from './posts.reducer';
-import * as PostsSelectors from './posts.selectors';
+import { POSTS_FEATURE_KEY, postsReducer, PostsState } from './posts.reducer';
 
 interface TestSchema {
   posts: PostsState;
@@ -23,10 +17,11 @@ interface TestSchema {
 describe('PostsFacade', () => {
   let facade: PostsFacade;
   let store: Store<TestSchema>;
-  const createPostsEntity = (id: string, name = ''): PostsEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createPostsEntity = (id: number, title = ''): PostsEntity =>
+    ({
+      id,
+      title: title || `title-${id}`,
+    } as PostsEntity);
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -84,7 +79,7 @@ describe('PostsFacade', () => {
 
       store.dispatch(
         PostsActions.loadPostsSuccess({
-          posts: [createPostsEntity('AAA'), createPostsEntity('BBB')],
+          posts: [createPostsEntity(1), createPostsEntity(2)],
         })
       );
 

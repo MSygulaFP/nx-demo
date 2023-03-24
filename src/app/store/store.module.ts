@@ -24,9 +24,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       }
     ),
     EffectsModule.forRoot([UsersEffects]),
-    StoreRouterConnectingModule.forRoot({
-      // serializer: RouterSerializer,
-    }),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,

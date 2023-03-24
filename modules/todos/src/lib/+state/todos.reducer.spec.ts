@@ -2,20 +2,18 @@ import { Action } from '@ngrx/store';
 
 import * as TodosActions from './todos.actions';
 import { TodosEntity } from './todos.models';
-import { TodosState, initialTodosState, todosReducer } from './todos.reducer';
+import { initialTodosState, todosReducer, TodosState } from './todos.reducer';
 
 describe('Todos Reducer', () => {
-  const createTodosEntity = (id: string, name = ''): TodosEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createTodosEntity = (id: number, title = ''): TodosEntity =>
+    ({
+      id,
+      title: title || `title-${id}`,
+    } as TodosEntity);
 
   describe('valid Todos actions', () => {
     it('loadTodosSuccess should return the list of known Todos', () => {
-      const todos = [
-        createTodosEntity('PRODUCT-AAA'),
-        createTodosEntity('PRODUCT-zzz'),
-      ];
+      const todos = [createTodosEntity(1), createTodosEntity(2)];
       const action = TodosActions.loadTodosSuccess({ todos });
 
       const result: TodosState = todosReducer(initialTodosState, action);

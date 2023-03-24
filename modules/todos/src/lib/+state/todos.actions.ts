@@ -10,5 +10,5 @@ export const loadTodosSuccess = createAction(
 
 export const loadTodosFailure = createAction(
   '[Todos/API] Load Todos Failure',
-  props<{ error: any }>()
+  props<{ error: string | null }>()
 );

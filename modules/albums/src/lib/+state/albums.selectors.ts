@@ -1,11 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   ALBUMS_FEATURE_KEY,
-  AlbumsState,
   albumsAdapter,
+  AlbumsState,
 } from './albums.reducer';
 
-// Lookup the 'Albums' feature state managed by NgRx
 export const selectAlbumsState =
   createFeatureSelector<AlbumsState>(ALBUMS_FEATURE_KEY);
 

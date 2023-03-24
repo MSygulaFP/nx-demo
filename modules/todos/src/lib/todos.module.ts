@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodosComponent } from './todos/todos.component';
+import { TodosComponent } from './pages/todos/todos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromTodos from './+state/todos.reducer';
 import { TodosEffects } from './+state/todos.effects';
 import { TodosFacade } from './+state/todos.facade';
+import { TodosListComponent } from './components/todos-list/todos-list.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
     EffectsModule.forFeature([TodosEffects]),
   ],
   exports: [RouterModule],
-  declarations: [TodosComponent],
+  declarations: [TodosComponent, TodosListComponent],
   providers: [TodosFacade],
 })
 export class TodosModule {}

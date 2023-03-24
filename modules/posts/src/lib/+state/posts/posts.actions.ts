@@ -10,7 +10,7 @@ export const loadPostsSuccess = createAction(
 
 export const loadPostsFailure = createAction(
   '[Posts/API] Load Posts Failure',
-  props<{ error: any }>()
+  props<{ error: string | null }>()
 );
 
 export const selectPost = createAction(

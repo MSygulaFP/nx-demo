@@ -10,5 +10,5 @@ export const loadAlbumsSuccess = createAction(
 
 export const loadAlbumsFailure = createAction(
   '[Albums/API] Load Albums Failure',
-  props<{ error: any }>()
+  props<{ error: string | null }>()
 );

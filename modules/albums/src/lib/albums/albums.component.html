@@ -1,1 +1,6 @@
-<p>albums works!</p>
+<a
+  *ngFor="let album of albums$ | async"
+  class="prose max-w-none dark:prose-invert border border-slate-400 p-4 hover:bg-slate-800"
+>
+  {{ album.title }}
+</a>

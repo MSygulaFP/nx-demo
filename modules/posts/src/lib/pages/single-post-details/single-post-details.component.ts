@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { PostsFacade } from '@nx-demo/modules/posts';
-import { UsersFacade } from '../../../../../../src/app/store/+state/users/users.facade';
+import { PostsFacade } from '../../+state/posts/posts.facade';
+import { UsersFacade } from '@app/store/+state/users/users.facade';
 import { filter, tap } from 'rxjs';
 
 @Component({
   selector: 'nx-demo-posts-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss'],
+  templateUrl: './single-post-details.component.html',
+  styleUrls: ['./single-post-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailsComponent {
+export class SinglePostDetailsComponent {
   private postsFacade = inject(PostsFacade);
   private usersFacade = inject(UsersFacade);
 

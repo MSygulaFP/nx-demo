@@ -1,0 +1,6 @@
+<ng-container *ngIf="uncompletedTodos$ | async as todos">
+  <nx-demo-todos-list [title]="'To do'" [todos]="todos" />
+</ng-container>
+<ng-container *ngIf="completedTodos$ | async as todos">
+  <nx-demo-todos-list [title]="'Closed'" [todos]="todos" />
+</ng-container>

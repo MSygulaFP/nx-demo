@@ -9,6 +9,8 @@ import { AlbumsFacade } from '../+state/albums.facade';
 export class AlbumsComponent implements OnInit {
   private albumsFacade = inject(AlbumsFacade);
 
+  albums$ = this.albumsFacade.allAlbums$;
+
   ngOnInit() {
     this.albumsFacade.init();
   }

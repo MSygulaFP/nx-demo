@@ -1,15 +1,15 @@
 import { UsersEntity } from './users.models';
 import {
+  initialUsersState,
   usersAdapter,
   UsersPartialState,
-  initialUsersState,
 } from './users.reducer';
 import * as UsersSelectors from './users.selectors';
 
 describe('Users Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getUsersId = (it: UsersEntity) => it.id;
-  const createUsersEntity = (id: string, name = '') =>
+  const createUsersEntity = (id: number, name = '') =>
     ({
       id,
       name: name || `name-${id}`,
@@ -20,14 +20,10 @@ describe('Users Selectors', () => {
   beforeEach(() => {
     state = {
       users: usersAdapter.setAll(
-        [
-          createUsersEntity('PRODUCT-AAA'),
-          createUsersEntity('PRODUCT-BBB'),
-          createUsersEntity('PRODUCT-CCC'),
-        ],
+        [createUsersEntity(1), createUsersEntity(2), createUsersEntity(3)],
         {
           ...initialUsersState,
-          selectedId: 'PRODUCT-BBB',
+          selectedId: 1,
           error: ERROR_MSG,
           loaded: true,
         }
@@ -41,14 +37,14 @@ describe('Users Selectors', () => {
       const selId = getUsersId(results[1]);
 
       expect(results.length).toBe(3);
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe(2);
     });
 
     it('selectEntity() should return the selected Entity', () => {
       const result = UsersSelectors.selectEntity(state) as UsersEntity;
       const selId = getUsersId(result);
 
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe(1);
     });
 
     it('selectUsersLoaded() should return the current "loaded" status', () => {
