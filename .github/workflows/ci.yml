@@ -12,9 +12,7 @@ jobs:
       actions: 'read'
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
         with:
-          node-version: 16
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v3
       - run: npm ci
